@@ -152,8 +152,14 @@ between multiple software intermediaries. It defines the kinds of calls or reque
 how to make them, the data formats that should be used, the conventions to follow, etc.
 It can also provide extension mechanisms
 so that users can extend existing functionality in various ways and to varying degrees
-- We have used github api in HackYourRepo project.
-We got the responses from 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100'
-by using AJAX. Then we displayed the datas to our html file dynamically.
+- We used Github REST API to get data in github account of HackYourFuture.
+Our project,Single Page Application (SPA), makes connection to the GitHub API by using "https://api.github.com/orgs/HackYourFuture/repos?per_page=100" API URL and retrieves all the HYF repositories.
+That means, we sent an API call to github from our  HackYourRepo project.
+first week we used XMLHttpRequest-Ajax to fetch JSON data from an API end point.
+and we displayed the data on our HTML file by writing JavaScript to add element to the DOM.
+on the other weeks we used Fetch Api instead of XMLHttpRequest.
+Actually Fetch API which is located inside the Window object, returns to us a Promise.
+If the result is positive we can get resolved promise with using then(),
+if it has an error we can catch rejected promise with using catch().
 
 */
