@@ -9,19 +9,31 @@ Write a function that:
 - Display the "name", "email" and "city" of the first person inside an unordered list.
 */
 async function fetchJSON(URL) {
-  const response = await fetch(URL);
-  const data = await response.json();
   const ul = document.createElement('ul');
   const body = document.body;
   body.appendChild(ul);
-  data.results.forEach((element, index) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<li>${element.name.first}</li>
-    <li>${element.email}</li>
-    <li>${element.location.city}</li>`;
-    ul.appendChild(li);
-  });
-
+  try {
+    const response = await fetch(URLl);
+    const data = await response.json();
+    data.results.forEach((element, index) => {
+      const li = document.createElement('li');
+      const nameText = document.createElement('p');
+      nameText.innerText = `${index + 1}.user's first name : ${element.name.first}`;
+      const mailText = document.createElement('p');
+      mailText.innerText = `${index + 1}.user's mail : ${element.email}`;
+      const cityText = document.createElement('p');
+      cityText.innerText = `${index + 1}.user's city : ${element.location.city}`;
+      ul.appendChild(li);
+      li.appendChild(nameText);
+      li.appendChild(mailText);
+      li.appendChild(cityText);
+    });
+  } catch (error) {
+    const errorText = document.createElement('p');
+    errorText.innerText = `Upsss !!! ${error}`;
+    errorText.style.color = "red";
+    ul.appendChild(errorText);
+  }
 }
 fetchJSON("https://randomuser.me/api?results=5");
 /*
